@@ -110,10 +110,10 @@ export class LoginPage {
         return;
       }
       
-      let loader = this.loadingCtrl.create({
+      this.loader = this.loadingCtrl.create({
         content: "Registering your account..."
       });
-      loader.present();
+      this.loader.present();
 
       this.userCreateRequest.email = this.email;
       this.userCreateRequest.firstname = this.firstname;

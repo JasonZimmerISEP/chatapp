@@ -9,7 +9,7 @@ import { TokenResponse } from '../interface/TokenResponse';
 
 @Injectable()
 export class AccountService {
-    private baseCreateUrl: string = 'http://localhost:30873/api/Account/Post';
+    private baseCreateUrl: string = 'http://localhost:30873/api/Account/';
     
     constructor(private http: Http) {
     }
