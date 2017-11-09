@@ -11,10 +11,10 @@ import { FriendResponse } from '../../interface/FriendResponse';
 import { Friend } from '../../interface/Friend';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.component.html'
+  selector: 'page-chat',
+  templateUrl: 'chat.component.html'
 })
-export class HomePage {
+export class ChatPage {
 
   userDto: UserDto = 
   {
@@ -38,22 +38,7 @@ export class HomePage {
     this.loader.present();
     storage.get("User").then((user) => {
       this.userDto = user;
-      this.friendService.getFriends(this.userDto.userId, "1.0")
-        .subscribe((result) => this.displayFriends(result));
     });
 
-  }
-  displayFriends(apiData: FriendResponse): void {
-    this.loader.dismissAll();
-    if (apiData.success) {
-      this.friendList = apiData.friends;
-    }
-    else {
-      this.statusMessage = apiData.errorMessage + " " + apiData.reason;
-    }
-  }
-
-  chatwith(friend: Friend): void {
-    
   }
 }

@@ -22,6 +22,7 @@ import { LoginPage } from '../pages/login/login.component';
 //Services
 import { LoginService } from '../service/LoginService';
 import { AccountService } from '../service/AccountService';
+import { FriendService } from '../service/FriendService';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AccountService } from '../service/AccountService';
     SplashScreen,
     LoginService,
     AccountService,
+    FriendService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
