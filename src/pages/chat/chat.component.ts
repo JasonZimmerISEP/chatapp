@@ -11,13 +11,14 @@ import { ConversationResponse } from '../../interface/ConversationResponse';
 import { Conversation } from '../../interface/Conversation';
 import { FriendResponse } from '../../interface/FriendResponse';
 import { Friend } from '../../interface/Friend';
+import { MessageRequest } from '../../interface/MessageRequest';
 
 @Component({
   selector: 'page-chat',
   templateUrl: 'chat.component.html'
 })
 export class ChatPage {
-
+  sendMessageText: string = "";
   userDto: UserDto = 
   {
     username: "",
@@ -40,6 +41,12 @@ export class ChatPage {
     displayName: "",
     userId: ""
   };
+  messageRequest: MessageRequest = 
+  {
+    message: "",
+    receivingUser: "",
+    sendingUser: ""
+  }
   statusMessage = "";
   friendList: Friend[] = null;
   loader;
@@ -69,10 +76,20 @@ export class ChatPage {
     if (apiData.success) {
       if (apiData.messages != null) {
         this.messageList = apiData.messages;
+        this.sendMessageText = "";
       } 
     }
     else {
       this.statusMessage = apiData.errorMessage + " " + apiData.reason;
     }
+  }
+  sendMessage(): void {
+    this.messageRequest.message = this.sendMessageText;
+    this.messageRequest.sendingUser = this.userDto.userId;
+    this.messageRequest.receivingUser = this.friendDto.userId;
+
+    this.conversationService
+      .sendMessage(this.messageRequest)
+      .subscribe((result) => this.displayConversation(result));
   }
 }

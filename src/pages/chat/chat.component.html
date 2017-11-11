@@ -13,13 +13,28 @@
   <div *ngIf="messageList == null || messageList.length == 0">
     A conversation has not started why dont you start one.
   </div>
-  <ion-card *ngFor="let message of messageList">
-    <ion-card-header>
-        {{message.SendingDisplayName}}
-        {{message.ReceivingDisplayName}}
-    </ion-card-header>
-    <ion-card-content>
-        {{message.Message}}
-    </ion-card-content>
-</ion-card>
+  <div *ngIf="messageList != null && messageList.length > 0" style="position: absolute; top: 0px; height:80%; width: 100%">
+    <div *ngFor="let message of messageList">
+          {{message.SendingDisplayName}} ->
+          {{message.ReceivingDisplayName}}
+          <br>
+          {{message.Message}}
+    </div>
+  </div>
+  <div style="position: absolute; bottom: 0px; width: 100%">
+    <div style="text-align: center">
+      <table>
+        <tr>
+          <td>
+              <ion-item style="width:70%">
+                <ion-input type="text" placeholder="Message..." [(ngModel)]="sendMessageText"></ion-input>
+              </ion-item>
+          </td>
+          <td>
+              <button ion-button color="primary" full (click)="sendMessage()">Send</button>
+          </td>
+        </tr>
+    </table>
+    </div>
+  </div>
 </ion-content>
