@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 //User
 import { UserDto } from '../../dto/UserDto';
 //Services
-import { FriendService } from '../../service/FriendService';
+import { ConversationService } from '../../service/ConversationService';
 //Interface
 import { FriendResponse } from '../../interface/FriendResponse';
 import { Friend } from '../../interface/Friend';
@@ -23,6 +23,11 @@ export class ChatPage {
     token: "",
     userId: ""
   };
+  friendDto: Friend = 
+  {
+    displayName: "",
+    userId: ""
+  };
   statusMessage = "";
   friendList: Friend[] = null;
   loader;
@@ -31,14 +36,17 @@ export class ChatPage {
               public alertCtrl: AlertController, 
               public loadingCtrl:LoadingController, 
               private storage: Storage,
-              private friendService: FriendService) {
+              private friendService: ConversationService,
+              public navParams: NavParams) {
     this.loader = this.loadingCtrl.create({
-      content: "Loading friends..."
+      content: "Loading Conversation..."
     });
     this.loader.present();
     storage.get("User").then((user) => {
       this.userDto = user;
+      this.friendDto.displayName = this.navParams.get("displayName");
+      this.friendDto.userId = this.navParams.get("userId");
+      this.loader.dismissAll();
     });
-
   }
 }

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      {{ friendDto.displayName }}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,17 +10,5 @@
   <div *ngIf="statusMessage != ''">
     {{ statusMessage }}
   </div>
-  <ion-card *ngIf="friendList != null && friendList.length > 0">
-    <ion-card-header>
-      Friends {{ friendList.length }}
-    </ion-card-header>
-  
-    <ion-list>
-      <ion-item *ngFor="let friend of friendList">
-       <button ion-button icon-only (click)="chatwith(friend)" light>
-           <ion-icon name="paper"></ion-icon> {{ friend.displayName }}
-       </button>
-      </ion-item>
-    </ion-list>
-  </ion-card>
+  {{ friendDto.displayName }}
 </ion-content>

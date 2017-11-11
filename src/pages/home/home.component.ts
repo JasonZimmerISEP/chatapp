@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
+//Pages
+import { ChatPage } from '../../pages/chat/chat.component';
 //User
 import { UserDto } from '../../dto/UserDto';
 //Services
@@ -54,6 +56,6 @@ export class HomePage {
   }
 
   chatwith(friend: Friend): void {
-    
+    this.navCtrl.push(ChatPage, friend);
   }
 }

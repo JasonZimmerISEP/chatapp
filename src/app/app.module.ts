@@ -18,6 +18,7 @@ const cloudSettings: CloudSettings = {
 //Pages
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home.component';
+import { ChatPage } from '../pages/chat/chat.component';
 import { LoginPage } from '../pages/login/login.component';
 //Services
 import { LoginService } from '../service/LoginService';
@@ -28,6 +29,7 @@ import { FriendService } from '../service/FriendService';
   declarations: [
     MyApp,
     HomePage,
+    ChatPage,
     LoginPage
   ],
   imports: [
@@ -41,6 +43,7 @@ import { FriendService } from '../service/FriendService';
   entryComponents: [
     MyApp,
     HomePage,
+    ChatPage,
     LoginPage
   ],
   providers: [
