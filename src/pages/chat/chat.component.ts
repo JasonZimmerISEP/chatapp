@@ -7,6 +7,8 @@ import { UserDto } from '../../dto/UserDto';
 //Services
 import { ConversationService } from '../../service/ConversationService';
 //Interface
+import { ConversationResponse } from '../../interface/ConversationResponse';
+import { Conversation } from '../../interface/Conversation';
 import { FriendResponse } from '../../interface/FriendResponse';
 import { Friend } from '../../interface/Friend';
 
@@ -23,6 +25,16 @@ export class ChatPage {
     token: "",
     userId: ""
   };
+  messageDto: Conversation = 
+  {
+    message: "",
+    messageSent: "",
+    receivingDisplayName: "",
+    receivingUserId: "",
+    sendingDisplayName: "",
+    sendingUserId: ""
+  };
+  messageList: Conversation[] = null;
   friendDto: Friend = 
   {
     displayName: "",
@@ -36,7 +48,7 @@ export class ChatPage {
               public alertCtrl: AlertController, 
               public loadingCtrl:LoadingController, 
               private storage: Storage,
-              private friendService: ConversationService,
+              private conversationService: ConversationService,
               public navParams: NavParams) {
     this.loader = this.loadingCtrl.create({
       content: "Loading Conversation..."
@@ -46,7 +58,21 @@ export class ChatPage {
       this.userDto = user;
       this.friendDto.displayName = this.navParams.get("displayName");
       this.friendDto.userId = this.navParams.get("userId");
-      this.loader.dismissAll();
+      this.conversationService
+        .getConversation(this.userDto.userId, this.friendDto.userId)
+        .subscribe((result) => this.displayConversation(result));
     });
+  }
+
+  displayConversation(apiData): void {
+    this.loader.dismissAll();
+    if (apiData.success) {
+      if (apiData.messages != null) {
+        this.messageList = apiData.messages;
+      } 
+    }
+    else {
+      this.statusMessage = apiData.errorMessage + " " + apiData.reason;
+    }
   }
 }

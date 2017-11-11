@@ -10,5 +10,16 @@
   <div *ngIf="statusMessage != ''">
     {{ statusMessage }}
   </div>
-  {{ friendDto.displayName }}
+  <div *ngIf="messageList == null || messageList.length == 0">
+    A conversation has not started why dont you start one.
+  </div>
+  <ion-card *ngFor="let message of messageList">
+    <ion-card-header>
+        {{message.SendingDisplayName}}
+        {{message.ReceivingDisplayName}}
+    </ion-card-header>
+    <ion-card-content>
+        {{message.Message}}
+    </ion-card-content>
+</ion-card>
 </ion-content>

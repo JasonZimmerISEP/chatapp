@@ -24,6 +24,7 @@ import { LoginPage } from '../pages/login/login.component';
 import { LoginService } from '../service/LoginService';
 import { AccountService } from '../service/AccountService';
 import { FriendService } from '../service/FriendService';
+import { ConversationService } from '../service/ConversationService';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { FriendService } from '../service/FriendService';
     LoginService,
     AccountService,
     FriendService,
+    ConversationService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
