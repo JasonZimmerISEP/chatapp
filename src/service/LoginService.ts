@@ -6,12 +6,15 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { TokenResponse } from '../interface/TokenResponse';
+import { Environment } from '../config/environment';
 
 @Injectable()
 export class LoginService {
-    private basePostUrl: string = 'http://localhost:30873/api/Login/Post';
+    private env: Environment;
+    private basePostUrl: string = '';
     
     constructor(private http: Http) {
+        this.basePostUrl = this.env.baseUrl + 'api/Login/';
     }
 
     postLogin(loginObj): Observable<TokenResponse> {
