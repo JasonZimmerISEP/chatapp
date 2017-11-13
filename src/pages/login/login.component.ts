@@ -87,7 +87,9 @@ export class LoginPage {
       
       this.loginService
               .postLogin(this.loginRequest)
-              .subscribe((result) => this.setLoginUser(result));
+              .subscribe(
+                      (result) => this.setLoginUser(result),
+                      (errResult) => this.displayLoginError(errResult));
     } else {
       this.showLogin = true;
     }
@@ -128,6 +130,18 @@ export class LoginPage {
     } else {
       this.showLogin = false;
     }
+  }
+  
+  displayLoginError(apiData: TokenResponse): void {
+      this.loader.dismissAll();
+      let alert = this.alertCtrl.create({
+        title:'Login Error', 
+        subTitle: apiData.errorMessage + ": " + apiData.reason,
+        buttons:['OK']
+      });
+      alert.present();
+      this.navCtrl.setRoot(LoginPage);  
+      return;
   }
   
   setLoginUser(apiData: TokenResponse): void {

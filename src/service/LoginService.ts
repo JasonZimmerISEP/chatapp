@@ -25,9 +25,16 @@ export class LoginService {
         return result$;
     }
 
-    handleError(error: any) {
+    handleError(error: any): Observable<TokenResponse> {
         console.log(error);
-        return Observable.throw(error.json().error || 'Server Error');
+        let result = <TokenResponse>({
+            errorMessage: "Server Error",
+            success: false,
+            token: "",
+            userId: "",
+            reason: "Please try again."
+        });
+        return Observable.throw(result);
     }
 }
 
