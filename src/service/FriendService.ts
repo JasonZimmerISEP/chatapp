@@ -7,12 +7,15 @@ import 'rxjs/add/observable/throw';
 
 import { Friend } from '../interface/Friend';
 import { FriendResponse } from '../interface/FriendResponse';
+import { Environment } from '../config/environment';
 
 @Injectable()
 export class FriendService {
-    private baseGetUrl: string = 'http://localhost:30873/api/Friends/Get';
+    private env: Environment;
+    private baseGetUrl: string = '';
     
     constructor(private http: Http) {
+        this.baseGetUrl = this.env.baseUrl + 'api/Friends/';
     }
 
     getFriends(userId, version): Observable<FriendResponse> {

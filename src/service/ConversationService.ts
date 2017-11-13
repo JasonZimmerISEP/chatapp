@@ -10,12 +10,15 @@ import { MessageRequest } from '../interface/MessageRequest';
 import { ApiResponse } from '../interface/ApiResponse';
 import { ConversationResponse } from '../interface/ConversationResponse';
 import { FriendResponse } from '../interface/FriendResponse';
+import { Environment } from '../config/environment';
 
 @Injectable()
 export class ConversationService {
-    private baseUrl: string = 'http://localhost:30873/api/Conversation/';
+    private env: Environment;
+    private baseUrl: string = '';
     
     constructor(private http: Http) {
+        this.baseUrl = this.env.baseUrl + 'api/Conversation/';
     }
 
     getConversation(fromUserId: string, toUserId: string): Observable<FriendResponse> {
