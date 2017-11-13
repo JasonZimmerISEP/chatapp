@@ -5,7 +5,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import { Friend } from '../interface/Friend';
 import { MessageRequest } from '../interface/MessageRequest';
 import { ApiResponse } from '../interface/ApiResponse';
 import { ConversationResponse } from '../interface/ConversationResponse';
