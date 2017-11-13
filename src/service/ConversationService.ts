@@ -14,7 +14,7 @@ import { Environment } from '../config/environment';
 
 @Injectable()
 export class ConversationService {
-    private env: Environment;
+    private env: Environment = new Environment();
     private baseUrl: string = '';
     
     constructor(private http: Http) {

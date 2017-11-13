@@ -25,6 +25,8 @@ import { LoginService } from '../service/LoginService';
 import { AccountService } from '../service/AccountService';
 import { FriendService } from '../service/FriendService';
 import { ConversationService } from '../service/ConversationService';
+//Config
+import { Environment } from '../config/environment';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import { ConversationService } from '../service/ConversationService';
     AccountService,
     FriendService,
     ConversationService,
+    Environment,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

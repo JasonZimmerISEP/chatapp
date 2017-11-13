@@ -10,7 +10,7 @@ import { Environment } from '../config/environment';
 
 @Injectable()
 export class LoginService {
-    private env: Environment;
+    private env: Environment = new Environment();
     private basePostUrl: string = '';
     
     constructor(private http: Http) {
