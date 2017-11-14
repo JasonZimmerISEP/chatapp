@@ -11,7 +11,7 @@
     {{ statusMessage }}
   </div>
   <div *ngIf="messageList == null || messageList.length == 0">
-    A conversation has not started why dont you start one.
+    A conversation has not started why dont you start one!
   </div>
   <div *ngIf="messageList != null && messageList.length > 0" style="position: absolute; top: 0px; height:80%; width: 100%">
     <div *ngFor="let message of messageList">
